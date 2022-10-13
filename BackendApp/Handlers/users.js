@@ -3,14 +3,11 @@ const setuser = async (req, res) => {
     const username = req.params.username;
     const User = await user.findOne({ login: username });
 
-    if (User) {
-        res.status(200).send(User);
-    }
-    else {
+    if (!User) {
         fetch(`https://api.github.com/users/${username}`)
             .then((res) => res.json())
             .then(async (res) => {
-                // console.log(res);
+              
                 try {
                     await user.create({
                         login: res.login,
@@ -53,9 +50,14 @@ const setuser = async (req, res) => {
             })
 
     }
+    else {
+        res.status(200).send(User);
+    }
 
 }
 
 const mutual = async(req,res)=>{
     return res.status(200).send("hello world");
 }
+module.exports=setuser
+module.exports=mutual
