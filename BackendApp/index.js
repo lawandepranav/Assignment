@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require ("cors")
 const connectionToDatabase= require('./Database/index');
-const setuser=require('./Handlers/users')
-const mutual=require('./Handlers/users')
+const setUser=require('./Handlers/users')
+
 
 
 const app = express()
