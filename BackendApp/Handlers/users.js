@@ -1,5 +1,5 @@
 const { user } = require("../Database/users");
-const setuser = async (req, res) => {
+const setUser = async (req, res) => {
     const username = req.params.username;
     const User = await user.findOne({ login: username });
 
@@ -8,7 +8,6 @@ const setuser = async (req, res) => {
             .then((res) => res.json())
             .then(async (res) => {
               
-                try {
                     await user.create({
                         login: res.login,
                         id: res.id,
@@ -28,25 +27,10 @@ const setuser = async (req, res) => {
                         received_events_url: res.received_events_url,
                         type: res.type,
                         site_admin: res.site_admin,
-                        name: res.name,
-                        blog: res.blog,
-                        location: res.location,
-                        email:res.email,
-                        hireable: res.hireable,
-                        bio: res.bio,
-                        twitter_username: res.twitter_username,
-                        public_repos: res.public_repos,
-                        public_gists: res.public_gists,
-                        followers: res.followers,
-                        following: res.following,
-                        created_at: res.created_at,
-                        updated_at: res.updated_at
+                        
                     })
                     return res.status(200).send(res);
-                }
-                catch (err) {
-                    return res.status(500).send("Internal server error");
-                }
+               
             })
 
     }
@@ -56,8 +40,4 @@ const setuser = async (req, res) => {
 
 }
 
-const mutual = async(req,res)=>{
-    return res.status(200).send("hello world");
-}
-module.exports=setuser
-module.exports=mutual
+module.exports=setUser
